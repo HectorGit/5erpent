@@ -95,7 +95,7 @@ def move():
 
 
     #find whether x or y is larger in distance. move in that direction.
-    distance_x = abs(myCoord['x']-foodList[minpos]['x'])
+    distance_x = abs(myCoord['x']-closestFood['x'])
 
     print("distance x: %d",distance_x)
 
@@ -114,7 +114,7 @@ def move():
 
     if distance_x > distance_y:
         
-        if myCoord['x'] - closestFood['x'] > 0 :
+        if myCoord['x'] - closestFood['x'] >= 0 :
 
             if myCoord['x'] == closestFood['x']:
                 print "on the same row x coord"
@@ -146,7 +146,7 @@ def move():
     else:
     #distance_y > distance_x
 
-        if myCoord['y'] - closestFood['y'] >0 :
+        if myCoord['y'] - closestFood['y'] >= 0 :
             if myCoord['y'] == closestFood['y']:
                 print "on the same column y coord"
                 #need to fix this - 
