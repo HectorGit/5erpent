@@ -113,7 +113,7 @@ def move():
     hypotheticalEndPosition = myCoord
 
 
-    #direction ='right'
+    direction = random.choice(directions)
 
     if distance_x > distance_y:
         
@@ -145,7 +145,7 @@ def move():
                 hypotheticalEndPosition = {"x":myCoord['x']+1,"y":myCoord['y']}
 
 
-    elif distance_y > distance_x:
+    else:
 
         if myCoord['y'] - closestFood['y'] >= 0 :
             if myCoord['y'] == closestFood['y']:
