@@ -68,6 +68,8 @@ def move(data):
 	hypotheticalEndPosition = myCoord
 
 
+	#direction ='right'
+
 	if distance_x > distance_y:
 		
 		if myCoord['x'] - closestFood['x'] >= 0 :
@@ -83,8 +85,7 @@ def move(data):
 				print "food is on my left"
 				direction = 'left'
 				hypotheticalEndPosition = {"x":myCoord['x']-1,"y":myCoord['y']}
-		else:
-		#myCoord['x'] - closestFood['x'] <0
+		else:#if myCoord['x'] - closestFood['x'] < 0:
 
 			if myCoord['x'] == closestFood['x']:
 				print "on the same row x coord"
@@ -99,8 +100,7 @@ def move(data):
 				hypotheticalEndPosition = {"x":myCoord['x']+1,"y":myCoord['y']}
 
 
-	else:
-	#distance_y > distance_x
+	elif distance_y > distance_x:
 
 		if myCoord['y'] - closestFood['y'] >= 0 :
 			if myCoord['y'] == closestFood['y']:
@@ -115,8 +115,7 @@ def move(data):
 				direction = 'up'
 				hypotheticalEndPosition = {"x":myCoord['x'],"y":myCoord['y']+1}
 
-		else:
-		#myCoord['x'] - closestFood['x'] <0
+		else:#if myCoord['x'] - closestFood['x'] < 0 :
 			if myCoord['y'] == closestFood['y']:
 				print "on the same column y coord"
 				#need to fix this - 
