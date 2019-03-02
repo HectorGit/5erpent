@@ -68,7 +68,7 @@ def move():
     foodList = data['board']['food']
     print(foodList)
 
-    #my start position
+    #my myCoord position
 
     myCoord = data['you']['body'][0]
 
@@ -105,7 +105,7 @@ def move():
     #use the coordinates of the food we are chasing.
 
     #careful here
-    hypotheticalEndPosition = start
+    hypotheticalEndPosition = myCoord
 
 
     if distance_x > distance_y:
@@ -122,7 +122,7 @@ def move():
             else:
                 print "food is on my left"
                 direction = 'left'
-                hypotheticalEndPosition = {"x":start['x']-1,"y":start['y']}
+                hypotheticalEndPosition = {"x":myCoord['x']-1,"y":myCoord['y']}
         else:
         #myCoord['x'] - closestFood['x'] <0
 
@@ -136,7 +136,7 @@ def move():
             else:
                 print "food is on my right"
                 direction = 'right'
-                hypotheticalEndPosition = {"x":start['x']+1,"y":start['y']}
+                hypotheticalEndPosition = {"x":myCoord['x']+1,"y":myCoord['y']}
 
 
     else:
@@ -153,7 +153,7 @@ def move():
             else:
                 print "food is down"
                 direction = 'down'
-                hypotheticalEndPosition = {"x":start['x'],"y":start['y']-1}
+                hypotheticalEndPosition = {"x":myCoord['x'],"y":myCoord['y']-1}
 
         else:
         #myCoord['x'] - closestFood['x'] <0
@@ -168,14 +168,14 @@ def move():
             else: 
                 print "food is up"
                 direction = 'up'
-                hypotheticalEndPosition = {"x":start['x'],"y":start['y']+1}
+                hypotheticalEndPosition = {"x":myCoord['x'],"y":myCoord['y']+1}
 
 
 
     # verify that moving in a direction doesn't kill us
     # if it does, choose another direction (fix this)
 
-    # for now if the hypotheticalEndPosition == start 
+    # for now if the hypotheticalEndPosition == myCoord 
     # means that we made a random choice.
 
     #try to go another way if the direction chosen would kill us
@@ -193,11 +193,10 @@ def move():
         direction = random.choice(['down','left','right'])
 
     #too far down
-    if hypotheticalEndPosition['y'] <= 0
+    if hypotheticalEndPosition['y'] <= 0:
         direction = random.choice(['up','left','right'])
 
             
-
 
     return move_response(direction)
 
