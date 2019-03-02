@@ -137,19 +137,19 @@ def move(data):
 	#try to go another way if the direction chosen would kill us
 	
 	#too far right
-	if hypotheticalEndPosition['x'] > width-1:
+	if hypotheticalEndPosition['x'] >= width-1:
 		direction = random.choice(['left','up','down'])
 
 	#too far left
-	if hypotheticalEndPosition['x'] < 0 :
+	if hypotheticalEndPosition['x'] <= 0 :
 		direction = random.choice(['right','up','down'])
 
 	#too far up
-	if hypotheticalEndPosition['y'] > height-1:
+	if hypotheticalEndPosition['y'] >= height-1:
 		direction = random.choice(['down','left','right'])
 
 	#too far down
-	if hypotheticalEndPosition['y'] < 0
+	if hypotheticalEndPosition['y'] <= 0
 		direction = random.choice(['up','left','right'])
 
 			
