@@ -18,6 +18,9 @@ def move(data):
 
 	directions = ['up', 'down', 'left', 'right']    
 
+	height = data['board']['height']
+	width = data['board']['width']
+
 	foodList = data['board']['food']
 	print(foodList)
 
@@ -57,24 +60,99 @@ def move(data):
 	#how to determine whether moving up or down?
 	#use the coordinates of the food we are chasing.
 
+	#careful here
+	hypotheticalEndPosition = start
+
+
 	if distance_x > distance_y:
+		
 		if myCoord['x'] - closestFood['x'] >0 :
-			print "food is on my left"
-			direction = 'left'
+
+			if myCoord['x'] == closestFood['x']:
+				print "on the same row x coord"
+				#need to fix this - 
+				#maybe move up or down depending on 
+				#the y coord compared to 
+				#current position
+				direction = random.choice(['up','down'])
+			else:
+				print "food is on my left"
+				direction = 'left'
+				hypotheticalEndPosition = {"x":start['x']-1,"y":start['y']}
 		else:
 		#myCoord['x'] - closestFood['x'] <0
-			print "food is on my right"
-			direction = 'right'
+
+			if myCoord['x'] == closestFood['x']:
+				print "on the same row x coord"
+				#need to fix this - 
+				#maybe move up or down depending on 
+				#the y coord  compared to
+				#current position
+				direction = random.choice(['up','down'])
+			else:
+				print "food is on my right"
+				direction = 'right'
+				hypotheticalEndPosition = {"x":start['x']+1,"y":start['y']}
+
 
 	else:
 	#distance_y > distance_x
+
 		if myCoord['y'] - closestFood['y'] >0 :
-			print "food is down"
-			direction = 'down'
+			if myCoord['y'] == closestFood['y']:
+				print "on the same column y coord"
+				#need to fix this - 
+				#maybe move right or left depending on 
+				#the x coord  compared to
+				#current position
+				direction = random.choice(['left','right'])
+			else:
+				print "food is down"
+				direction = 'down'
+				hypotheticalEndPosition = {"x":start['x'],"y":start['y']-1}
+
 		else:
 		#myCoord['x'] - closestFood['x'] <0
-			print "food is up"
-			direction = 'up'
+			if myCoord['y'] == closestFood['y']:
+				print "on the same column y coord"
+				#need to fix this - 
+				#maybe move right or left depending on 
+				#the x coord  compared to
+				#current position
+				direction = random.choice(['left','right'])
+
+			else: 
+				print "food is up"
+				direction = 'up'
+				hypotheticalEndPosition = {"x":start['x'],"y":start['y']+1}
+
+
+
+	# verify that moving in a direction doesn't kill us
+	# if it does, choose another direction (fix this)
+
+	# for now if the hypotheticalEndPosition == start 
+	# means that we made a random choice.
+
+	#try to go another way if the direction chosen would kill us
+	
+	#too far right
+	if hypotheticalEndPosition['x'] > width-1:
+		direction = random.choice(['left','up','down'])
+
+	#too far left
+	if hypotheticalEndPosition['x'] < 0 :
+		direction = random.choice(['right','up','down'])
+
+	#too far up
+	if hypotheticalEndPosition['y'] > height-1:
+		direction = random.choice(['down','left','right'])
+
+	#too far down
+	if hypotheticalEndPosition['y'] < 0
+		direction = random.choice(['up','left','right'])
+
+			
     
 	print(direction)
 
